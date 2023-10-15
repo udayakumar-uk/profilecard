@@ -3,7 +3,7 @@
     box-sizing: border-box;
 }
 body{
-    background: radial-gradient(#CDDC39, #4CAF50);
+    background: #624ba7;
     margin: 0;
     height: 100vh;
     width: 100%;
@@ -26,7 +26,14 @@ p, .m-0{
 .text-white{
     color: #fff;
 }
-
+img{
+    vertical-align: middle;
+}
+.text-truncate{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 
 .icon-btn{
     position: absolute;
@@ -52,11 +59,12 @@ p, .m-0{
 
 #app{
     background-color: #897dc1;
-    width: 330px;
+    width: 350px;
     overflow: hidden;
     border-radius: 10px;
     border: 4px solid #897dc1;
     box-shadow: 0px 20px 25px -5px #00000061;
+    position: relative;
 }
 
 .upper{
@@ -64,11 +72,11 @@ p, .m-0{
     background-color: #897dc1;
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
 }
 
 #app.active .upper{
-    padding: 15px 10px;
+    padding: 10px 5px;
 }
 
 .profile-img{
@@ -88,10 +96,11 @@ p, .m-0{
 }
 
 #app.active .profile-img{
-    --size: 80px;
+    --size: 90px;
     transform: translate(0%, 0%);
     left: 0%;
     top: 0%;
+    margin: auto;
 }
 
 .profile-img img{
@@ -124,7 +133,7 @@ p, .m-0{
     font-size: 16px;
 }
 .material-symbols-rounded{
-    vertical-align: middle;
+    vertical-align: -8px;
     line-height: normal;
 }
 .contact span.material-symbols-rounded{
@@ -167,6 +176,7 @@ p, .m-0{
 
 .submit{
     padding-top: 10px;
+    text-align: right;
 }
 .submit > .btn{
     border: 1px solid #bbb;
@@ -194,7 +204,14 @@ p, .m-0{
     text-align: center;
     right: 0;
     top: 0;
-    background-color: #00000047;
+    align-items: center;
+    justify-content: center;
+    line-height: normal;
+    font-size: 11px;
+    padding: 0;
+    flex-direction: column;
+    background-color: #060d3d70;
+
     display: none;
 }
 
@@ -203,7 +220,7 @@ p, .m-0{
 }
 
 #app.active #addaphoto{
-    display: block;
+    display: flex;
 }
 #app.active #edit{
     display: none;
@@ -233,7 +250,6 @@ ul{
 }
 .social-media li img{
     filter: brightness(0.2);
-    vertical-align: middle;
 }
 
 
@@ -249,19 +265,108 @@ ul{
     display: flex;
     align-items: center;
     gap: 10px;
-    padding-bottom: 5px;
+    padding-bottom: 8px;
 }
 
 .social-link li input{
     border: 0;
     max-width: 100%;
-    height: 25px;
+    height: 32px;
     background: #ffffff2f;
     border-radius: 3px;
     outline: none;
     padding: 5px;
     color: #fff;
+    flex-grow: 1;
 }
 .social-link li input:focus{
     background: #ffffff6e;
 }
+
+#appendList{
+    background-color: #fff;
+    border-radius: 5px;
+    width: 200px;
+    overflow: hidden;
+    min-height: 100px;
+    max-height: 200px;
+    overflow: auto;
+    position: absolute;
+    z-index: 2;
+    color: #444;
+    box-shadow: 0px 5px 15px 5px #00000036;
+}
+
+#appendList li > img{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 3px;
+    flex-shrink: 0;
+    border-radius: 100px;
+}
+#appendList li{
+    padding: 5px;
+    cursor: pointer;
+    border-bottom: 1px solid #f1f1f1;
+    font-weight: 500;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+#appendList li .text-truncate{
+    flex-grow: 1;
+}
+
+
+#appendList li:hover{
+    background-color: #eee;
+}
+
+.dropdown{
+    position: relative;
+}
+
+.profile-dropdown{
+    flex-grow: 1;
+}
+
+#dropdown_toggle{
+    border: 0;
+    margin-top: 5px;
+    border-radius: 4px;
+    padding: 0px 6px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+#app:not(.active) #dropdown_toggle{
+    display: none;
+}
+
+#appendList::after{
+    content: 'Avatars not found';
+    text-align: center;
+    width: 100%;
+    margin-top: 20%;
+    clear: both;
+    color: #999;
+    display: none;
+}
+
+#appendList:empty::after{
+    display: block;
+}
+
+.dltImg{
+    border-radius: 5px;
+    font-size: 22px;
+    flex-shrink: 0;
+    color: #df224c;
+}
+
+.dltImg:hover{
+    background-color: #fdcdcd;
+}
+
