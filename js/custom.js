@@ -18,6 +18,9 @@ const appSettings = {
 
 var init = initializeApp(appSettings);
 var db = getDatabase();
+
+// Firebase server 
+
 // const db = getDatabase(init);
 var setDb = ref(db, 'profilecard');
 
@@ -52,7 +55,6 @@ function fetchAllAvatars(){
             });
             var html = imgitem.map(el => '<li class="imageList" title="'+el+'"><img src="img/'+el+'" />&nbsp; <span class="text-truncate">'+el+'</span><span class="material-symbols-rounded dltImg" imgsrc="'+el+'"> delete </span></li>');
             $('#appendList').html(html);
-            console.log(imgitem);
 
             if(imgitem.length < 1){
                 updateEmtyImg('icons/avatar.jpg');
@@ -104,7 +106,6 @@ function updateEmtyImg(data){
 onValue(setDb, (snapshot) => {
     const data = snapshot.val();
     profileData = data;
-    console.log(data);
     retriveData(profileData);
 });
 
@@ -221,7 +222,6 @@ function retriveData(data){
             profileData.social.image = data.social.image;
         });
         $('#profile').attr('src', 'img/'+profileData.social.image);
-        console.log(profileData);
 
         $('#app').removeClass('active');
     });
@@ -232,7 +232,6 @@ function retriveData(data){
             ...profileData.social,
             [name]: name === 'image' ? files[0].name : value
         }
-        console.log(profileData);
     });
     
 
@@ -293,10 +292,6 @@ function retriveData(data){
 
     });
 
-    function chooseImg(img){
-        console.log(img);
-    }
-
     function createFormData(image) {
         var formImage = new FormData();
         formImage.append('userImage', image[0]);
@@ -316,7 +311,6 @@ function retriveData(data){
                 $('#profile').attr('src', './img/'+data.trim());
                 profileData.social.image = data.trim();
                 fetchAllAvatars();
-                console.log(data);
 
             }
         });
